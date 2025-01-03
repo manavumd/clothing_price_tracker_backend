@@ -62,20 +62,21 @@ This backend application tracks prices for clothing items from various e-commerc
    ```
    DATABASE_URL=postgresql://<username>:<password>@<host>:<port>/<database>
    FIRECRAWL_API_KEY=<your-firecrawl-api-key>
-   SMTP_EMAIL=<your-email>
-   SMTP_PASSWORD=<your-email-password>
+   MAIL_APP_EMAIL=<your-email>
+   MAIL_APP_PASSWORD=<your-email-password>
    ```
 
 5. **Set Up Database**:
    Create the required tables:
    ```sql
    CREATE TABLE products (
-       id SERIAL PRIMARY KEY,
-       name TEXT NOT NULL,
-       url TEXT NOT NULL UNIQUE,
-       current_price FLOAT NOT NULL,
-       recipient_email TEXT NOT NULL,
-       added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+       `id` int NOT NULL AUTO_INCREMENT,
+        `name` varchar(255) NOT NULL,
+        `url` varchar(500) NOT NULL,
+        `current_price` float NOT NULL,
+        `added_at` datetime DEFAULT NULL,
+        `recipient_email` text NOT NULL,
+        `currency` text NOT NULL,
    );
 
    CREATE TABLE price_history (
